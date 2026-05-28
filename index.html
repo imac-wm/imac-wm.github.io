@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="iMaC: Translating Actions into Motion and Contact Images for Embodied World Models">
+  <meta name="keywords" content="Embodied World Models, Robot Learning, Video Prediction, Policy Evaluation, Robotic Manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iMaC</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/imac.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+<section class="hero publication-header">
+  <div class="hero-body">
+    <div class="container is-fullhd">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title imac-title">
+            iMaC: Translating Actions into Motion and Contact Images<br class="is-hidden-mobile">
+            for Embodied World Models
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+          <div class="is-size-6 publication-venue">CoRL 2026 Submission</div>
+          <div class="button-container">
+            <a href="#" class="button imac-button" aria-label="Paper">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+            </a>
+            <a href="#" class="button imac-button" aria-label="Code">
+              <span class="icon"><i class="fas fa-code"></i></span><span>Code</span>
+            </a>
+            <a href="#" class="button imac-button" aria-label="Data">
+              <span class="icon"><i class="fas fa-database"></i></span><span>Data</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-widescreen">
+    <div class="hero-body">
+      <div class="video-placeholder demo-placeholder">
+        <div>
+          <p class="placeholder-kicker">Main Demo Placeholder</p>
+          <p class="placeholder-title">Replace with <code>videos/main_demo.mp4</code></p>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered teaser-caption">
+        iMaC translates future robot actions into <b>motion images</b> and <b>contact images</b>, enabling embodied world models to predict contact-sensitive future videos for closed-loop policy evaluation.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Embodied world models promise to serve as real-world simulators for robot policy evaluation and closed-loop rollout, but their reliability depends on how precisely they condition future video prediction on robot actions. Existing action-conditioned video models often encode future actions as compact vectors, leaving the model to infer fine-grained spatial consequences indirectly. iMaC addresses this by translating future actions into dense image-like controls. It uses robot URDF and forward kinematics to render future robot observations as motion images, and uses RGB-D geometry to construct two-stream contact images that describe robot-scene spatial relations. These controls guide future-video prediction while preserving a scalable image-to-video modeling interface.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Pipeline</h2>
+      <div class="image-placeholder pipeline-placeholder">
+        <div>
+          <p class="placeholder-kicker">Pipeline Figure Placeholder</p>
+          <p class="placeholder-title">Replace with <code>img/imac_pipeline.png</code></p>
+        </div>
+      </div>
+      <p class="content has-text-justified section-copy">
+        Given a reference RGB observation and a future action sequence, iMaC converts joint actions into future robot configurations through URDF and forward kinematics. Rendered robot observations provide motion-image controls. Auxiliary depth prediction and pointcloud geometry provide contact-image controls that describe current scene to future gripper distances and future robot to current scene distances. The controls are injected as video/image controls into the future-video world model.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Generated Results</h2>
+      <div class="columns result-grid">
+        <div class="column">
+          <div class="video-placeholder result-placeholder">
+            <div>
+              <p class="placeholder-kicker">Generated Video</p>
+              <p class="placeholder-title"><code>videos/result_01.mp4</code></p>
+            </div>
+          </div>
+          <p class="result-label">Task 1 Rollout</p>
+        </div>
+        <div class="column">
+          <div class="video-placeholder result-placeholder">
+            <div>
+              <p class="placeholder-kicker">Generated Video</p>
+              <p class="placeholder-title"><code>videos/result_02.mp4</code></p>
+            </div>
+          </div>
+          <p class="result-label">Task 2 Rollout</p>
+        </div>
+        <div class="column">
+          <div class="video-placeholder result-placeholder">
+            <div>
+              <p class="placeholder-kicker">Generated Video</p>
+              <p class="placeholder-title"><code>videos/result_03.mp4</code></p>
+            </div>
+          </div>
+          <p class="result-label">Task 3 Rollout</p>
+        </div>
+      </div>
+      <p class="content has-text-justified section-copy">
+        This section is reserved for future-video rollouts from the learned world model. Replace the placeholders with RGB rollout videos that compare generated futures against real trajectories or show closed-loop policy execution inside the world model.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Condition Visualizations</h2>
+      <div class="columns result-grid">
+        <div class="column">
+          <div class="video-placeholder condition-placeholder">
+            <div>
+              <p class="placeholder-kicker">Motion Images</p>
+              <p class="placeholder-title"><code>videos/motion_images.mp4</code></p>
+            </div>
+          </div>
+          <p class="result-label">URDF/FK Robot Controls</p>
+        </div>
+        <div class="column">
+          <div class="video-placeholder condition-placeholder">
+            <div>
+              <p class="placeholder-kicker">Contact Images</p>
+              <p class="placeholder-title"><code>videos/contact_scene_gripper.mp4</code></p>
+            </div>
+          </div>
+          <p class="result-label">Scene-to-Gripper Control</p>
+        </div>
+        <div class="column">
+          <div class="video-placeholder condition-placeholder">
+            <div>
+              <p class="placeholder-kicker">Contact Images</p>
+              <p class="placeholder-title"><code>videos/contact_robot_scene.mp4</code></p>
+            </div>
+          </div>
+          <p class="result-label">Robot-to-Scene Control</p>
+        </div>
+      </div>
+      <p class="content has-text-justified section-copy">
+        This section is reserved for paired condition videos. The intended layout is generated RGB video alongside motion images and the two contact-image streams, so viewers can inspect how future actions are translated into spatial controls.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Policy Evaluation</h2>
+      <div class="image-placeholder eval-placeholder">
+        <div>
+          <p class="placeholder-kicker">Correlation Figure Placeholder</p>
+          <p class="placeholder-title">Replace with <code>img/world_model_real_correlation.png</code></p>
+        </div>
+      </div>
+      <p class="content has-text-justified section-copy">
+        iMaC is designed for evaluating robot policies through closed-loop rollout in a learned real-world simulator. This section should show the correlation between policy performance inside the world model and policy performance in the real world across the target manipulation tasks and policy checkpoints.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer imac-footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>Project page scaffold for iMaC. Replace placeholder links, images, and videos as final assets become available.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

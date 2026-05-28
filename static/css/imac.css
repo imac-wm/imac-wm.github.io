@@ -105,6 +105,92 @@ body {
   aspect-ratio: 16 / 9;
 }
 
+.task-switcher {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin: 0.2rem auto 1rem;
+  padding: 0.25rem;
+  border: 1px solid var(--imac-border);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.task-button {
+  min-width: 5.5rem;
+  height: 2.2rem;
+  padding: 0 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--imac-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.task-button.is-active,
+.task-button:hover,
+.task-button:focus-visible {
+  border-color: var(--imac-accent);
+  background: var(--imac-accent);
+  color: #ffffff;
+}
+
+.task-button:focus-visible {
+  outline: 2px solid rgba(101, 16, 173, 0.28);
+  outline-offset: 2px;
+}
+
+.task-video-panels {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+}
+
+.task-video-panel[hidden] {
+  display: none;
+}
+
+.video-matrix {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 0.68fr) repeat(3, minmax(14rem, 1fr));
+  gap: 0.55rem;
+  min-width: 860px;
+  align-items: stretch;
+}
+
+.matrix-corner,
+.matrix-view-label,
+.matrix-row-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--imac-ink);
+  font-weight: 700;
+}
+
+.matrix-corner,
+.matrix-view-label {
+  min-height: 2.3rem;
+  background: #f1f4f6;
+}
+
+.matrix-row-label {
+  min-height: 8.5rem;
+  padding: 0.75rem;
+  background: #f8f8fb;
+  color: var(--imac-accent-dark);
+  line-height: 1.2;
+  text-align: center;
+}
+
+.matrix-video {
+  min-height: 8.5rem;
+  aspect-ratio: 16 / 9;
+}
+
 .eval-placeholder {
   min-height: 330px;
   aspect-ratio: 2.1 / 1;
@@ -162,5 +248,26 @@ body {
   .result-placeholder,
   .condition-placeholder {
     min-height: 190px;
+  }
+
+  .task-switcher {
+    display: flex;
+    width: 100%;
+  }
+
+  .task-button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0 0.55rem;
+  }
+
+  .video-matrix {
+    grid-template-columns: minmax(8rem, 0.6fr) repeat(3, minmax(12.5rem, 1fr));
+    min-width: 760px;
+  }
+
+  .matrix-row-label,
+  .matrix-video {
+    min-height: 7.5rem;
   }
 }

@@ -106,79 +106,91 @@
   <div class="container is-max-widescreen">
     <hr>
     <div class="rows is-centered has-text-centered">
-      <h2 class="title is-3 section-title">Generated Results</h2>
-      <div class="columns result-grid">
-        <div class="column">
-          <div class="video-placeholder result-placeholder">
-            <div>
-              <p class="placeholder-kicker">Generated Video</p>
-              <p class="placeholder-title"><code>videos/result_01.mp4</code></p>
-            </div>
-          </div>
-          <p class="result-label">Task 1 Rollout</p>
-        </div>
-        <div class="column">
-          <div class="video-placeholder result-placeholder">
-            <div>
-              <p class="placeholder-kicker">Generated Video</p>
-              <p class="placeholder-title"><code>videos/result_02.mp4</code></p>
-            </div>
-          </div>
-          <p class="result-label">Task 2 Rollout</p>
-        </div>
-        <div class="column">
-          <div class="video-placeholder result-placeholder">
-            <div>
-              <p class="placeholder-kicker">Generated Video</p>
-              <p class="placeholder-title"><code>videos/result_03.mp4</code></p>
-            </div>
-          </div>
-          <p class="result-label">Task 3 Rollout</p>
-        </div>
+      <h2 class="title is-3 section-title">Generated Results and Conditions</h2>
+      <div class="task-switcher" role="tablist" aria-label="Task videos">
+        <button class="task-button is-active" type="button" role="tab" aria-selected="true" aria-controls="task-1" data-task-target="task-1">Task 1</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-2" data-task-target="task-2">Task 2</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-3" data-task-target="task-3">Task 3</button>
       </div>
-      <p class="content has-text-justified section-copy">
-        This section is reserved for future-video rollouts from the learned world model. Replace the placeholders with RGB rollout videos that compare generated futures against real trajectories or show closed-loop policy execution inside the world model.
-      </p>
-    </div>
-  </div>
-</section>
 
-<section class="section imac-section">
-  <div class="container is-max-widescreen">
-    <hr>
-    <div class="rows is-centered has-text-centered">
-      <h2 class="title is-3 section-title">Condition Visualizations</h2>
-      <div class="columns result-grid">
-        <div class="column">
-          <div class="video-placeholder condition-placeholder">
-            <div>
-              <p class="placeholder-kicker">Motion Images</p>
-              <p class="placeholder-title"><code>videos/motion_images.mp4</code></p>
-            </div>
+      <div class="task-video-panels">
+        <div class="task-video-panel is-active" id="task-1" role="tabpanel">
+          <div class="video-matrix" aria-label="Task 1 generated rollout and condition videos">
+            <div class="matrix-corner"></div>
+            <div class="matrix-view-label">Head View</div>
+            <div class="matrix-view-label">Left Wrist View</div>
+            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-row-label">RGB Video</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_01_rgb_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_01_rgb_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_01_rgb_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Motion Image</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_01_motion_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_01_motion_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_01_motion_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Contact: Scene-to-Gripper</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_01_contact_sg_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_01_contact_sg_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_01_contact_sg_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Contact: Robot-to-Scene</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_01_contact_rs_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_01_contact_rs_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_01_contact_rs_right_wrist.mp4</code></p></div></div>
           </div>
-          <p class="result-label">URDF/FK Robot Controls</p>
         </div>
-        <div class="column">
-          <div class="video-placeholder condition-placeholder">
-            <div>
-              <p class="placeholder-kicker">Contact Images</p>
-              <p class="placeholder-title"><code>videos/contact_scene_gripper.mp4</code></p>
-            </div>
+
+        <div class="task-video-panel" id="task-2" role="tabpanel" hidden>
+          <div class="video-matrix" aria-label="Task 2 generated rollout and condition videos">
+            <div class="matrix-corner"></div>
+            <div class="matrix-view-label">Head View</div>
+            <div class="matrix-view-label">Left Wrist View</div>
+            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-row-label">RGB Video</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_02_rgb_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_02_rgb_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_02_rgb_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Motion Image</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_02_motion_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_02_motion_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_02_motion_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Contact: Scene-to-Gripper</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_02_contact_sg_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_02_contact_sg_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_02_contact_sg_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Contact: Robot-to-Scene</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_02_contact_rs_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_02_contact_rs_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_02_contact_rs_right_wrist.mp4</code></p></div></div>
           </div>
-          <p class="result-label">Scene-to-Gripper Control</p>
         </div>
-        <div class="column">
-          <div class="video-placeholder condition-placeholder">
-            <div>
-              <p class="placeholder-kicker">Contact Images</p>
-              <p class="placeholder-title"><code>videos/contact_robot_scene.mp4</code></p>
-            </div>
+
+        <div class="task-video-panel" id="task-3" role="tabpanel" hidden>
+          <div class="video-matrix" aria-label="Task 3 generated rollout and condition videos">
+            <div class="matrix-corner"></div>
+            <div class="matrix-view-label">Head View</div>
+            <div class="matrix-view-label">Left Wrist View</div>
+            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-row-label">RGB Video</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_03_rgb_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_03_rgb_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">RGB Video</p><p class="placeholder-title"><code>videos/task_03_rgb_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Motion Image</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_03_motion_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_03_motion_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Motion Image</p><p class="placeholder-title"><code>videos/task_03_motion_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Contact: Scene-to-Gripper</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_03_contact_sg_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_03_contact_sg_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_03_contact_sg_right_wrist.mp4</code></p></div></div>
+            <div class="matrix-row-label">Contact: Robot-to-Scene</div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_03_contact_rs_head.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_03_contact_rs_left_wrist.mp4</code></p></div></div>
+            <div class="video-placeholder matrix-video"><div><p class="placeholder-kicker">Contact Image</p><p class="placeholder-title"><code>videos/task_03_contact_rs_right_wrist.mp4</code></p></div></div>
           </div>
-          <p class="result-label">Robot-to-Scene Control</p>
         </div>
       </div>
       <p class="content has-text-justified section-copy">
-        This section is reserved for paired condition videos. The intended layout is generated RGB video alongside motion images and the two contact-image streams, so viewers can inspect how future actions are translated into spatial controls.
+        Each task shows the generated RGB rollout together with its action-derived controls: URDF/FK motion images, scene-to-gripper contact images, and robot-to-scene contact images across the three camera views.
       </p>
     </div>
   </div>
@@ -209,5 +221,24 @@
     </div>
   </div>
 </footer>
+<script>
+  document.querySelectorAll('[data-task-target]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const targetId = button.dataset.taskTarget;
+
+      document.querySelectorAll('[data-task-target]').forEach((item) => {
+        const isSelected = item === button;
+        item.classList.toggle('is-active', isSelected);
+        item.setAttribute('aria-selected', String(isSelected));
+      });
+
+      document.querySelectorAll('.task-video-panel').forEach((panel) => {
+        const isSelected = panel.id === targetId;
+        panel.classList.toggle('is-active', isSelected);
+        panel.hidden = !isSelected;
+      });
+    });
+  });
+</script>
 </body>
 </html>

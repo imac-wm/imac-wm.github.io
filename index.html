@@ -89,12 +89,7 @@
     <hr>
     <div class="rows is-centered has-text-centered">
       <h2 class="title is-3 section-title">Pipeline</h2>
-      <div class="image-placeholder pipeline-placeholder">
-        <div>
-          <p class="placeholder-kicker">Pipeline Figure Placeholder</p>
-          <p class="placeholder-title">Replace with <code>img/imac_pipeline.png</code></p>
-        </div>
-      </div>
+      <img class="pipeline-figure" src="img/teaser.png" alt="Overview of iMaC translating future robot actions into motion images and contact images for action-conditioned future-video prediction.">
       <p class="content has-text-justified section-copy">
         Given a reference RGB observation and a future action sequence, iMaC converts joint actions into future robot configurations through URDF and forward kinematics. Rendered robot observations provide motion-image controls. Auxiliary depth prediction and pointcloud geometry provide contact-image controls that describe current scene to future gripper distances and future robot to current scene distances. The controls are injected as video/image controls into the future-video world model.
       </p>
@@ -243,14 +238,9 @@
     <hr>
     <div class="rows is-centered has-text-centered">
       <h2 class="title is-3 section-title">Policy Evaluation</h2>
-      <div class="image-placeholder eval-placeholder">
-        <div>
-          <p class="placeholder-kicker">Correlation Figure Placeholder</p>
-          <p class="placeholder-title">Replace with <code>img/world_model_real_correlation.png</code></p>
-        </div>
-      </div>
+      <img class="eval-figure" src="img/world_model_real_correlation.png" alt="Correlation between normalized real-world success rate and normalized iMaC world-model success rate across eight tasks.">
       <p class="content has-text-justified section-copy">
-        iMaC is designed for evaluating robot policies through closed-loop rollout in a learned real-world simulator. This section should show the correlation between policy performance inside the world model and policy performance in the real world across the target manipulation tasks and policy checkpoints.
+        iMaC is designed for evaluating robot policies through closed-loop rollout in a learned real-world simulator. The correlation measures whether world-model scores preserve policy performance across different model families and across checkpoints from the same model, supporting both model comparison and iterative checkpoint selection.
       </p>
     </div>
   </div>

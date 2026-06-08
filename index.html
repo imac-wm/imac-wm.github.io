@@ -36,13 +36,10 @@
           </div>
           <div class="is-size-6 publication-venue">CoRL 2026 Submission</div>
           <div class="button-container">
-            <a href="#" class="button imac-button" aria-label="Paper">
-              <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
-            </a>
-            <a href="#" class="button imac-button" aria-label="Code">
+            <a href="https://github.com/imac-wm/iMac" class="button imac-button" aria-label="Code" target="_blank" rel="noopener noreferrer">
               <span class="icon"><i class="fas fa-code"></i></span><span>Code</span>
             </a>
-            <a href="#" class="button imac-button" aria-label="Data">
+            <a href="https://huggingface.co/datasets/open-gigaai/CVPR-2026-WorldModel-Track-Dataset" class="button imac-button" aria-label="Data" target="_blank" rel="noopener noreferrer">
               <span class="icon"><i class="fas fa-database"></i></span><span>Data</span>
             </a>
           </div>
@@ -55,10 +52,15 @@
 <section class="hero teaser">
   <div class="container is-max-widescreen">
     <div class="hero-body">
-      <div class="video-placeholder demo-placeholder">
-        <div>
-          <p class="placeholder-kicker">Main Demo Placeholder</p>
-          <p class="placeholder-title">Replace with <code>videos/main_demo.mp4</code></p>
+      <div class="demo-video-frame">
+        <video id="teaser-video" class="demo-video" autoplay muted loop playsinline preload="metadata" aria-label="iMaC teaser video" src="videos/teaser.mov"></video>
+        <div class="video-controls" data-video-target="teaser-video">
+          <input class="video-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="Teaser video progress">
+          <div class="video-time" aria-hidden="true">
+            <span class="video-current-time">0:00</span>
+            <span class="video-time-divider">/</span>
+            <span class="video-duration">0:00</span>
+          </div>
         </div>
       </div>
       <h2 class="subtitle has-text-centered teaser-caption">
@@ -103,23 +105,25 @@
     <div class="rows is-centered has-text-centered">
       <h2 class="title is-3 section-title">Generated Results and Conditions</h2>
       <div class="task-switcher" role="tablist" aria-label="Task videos">
-        <button class="task-button is-active" type="button" role="tab" aria-selected="true" aria-controls="task-1" data-task-target="task-1">Task 1</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-2" data-task-target="task-2">Task 2</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-3" data-task-target="task-3">Task 3</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-4" data-task-target="task-4">Task 4</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-5" data-task-target="task-5">Task 5</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-1" data-task-target="task-1" disabled aria-disabled="true">Task 1</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-2" data-task-target="task-2" disabled aria-disabled="true">Task 2</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-3" data-task-target="task-3" disabled aria-disabled="true">Task 3</button>
+        <button class="task-button is-active" type="button" role="tab" aria-selected="true" aria-controls="task-4" data-task-target="task-4">Task 4</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-5" data-task-target="task-5" disabled aria-disabled="true">Task 5</button>
         <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-6" data-task-target="task-6">Task 6</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-7" data-task-target="task-7">Task 7</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-8" data-task-target="task-8">Task 8</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-7" data-task-target="task-7" disabled aria-disabled="true">Task 7</button>
+        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-8" data-task-target="task-8" disabled aria-disabled="true">Task 8</button>
       </div>
 
       <div class="task-video-panels">
-        <div class="task-video-panel is-active" id="task-1" role="tabpanel">
+        <div class="task-video-panel" id="task-1" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 1 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
             <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_01_grid.mp4</code></p></div></div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
@@ -131,9 +135,11 @@
         <div class="task-video-panel" id="task-2" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 2 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
             <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_02_grid.mp4</code></p></div></div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
@@ -145,9 +151,11 @@
         <div class="task-video-panel" id="task-3" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 3 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
             <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_03_grid.mp4</code></p></div></div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
@@ -156,26 +164,42 @@
           </div>
         </div>
 
-        <div class="task-video-panel" id="task-4" role="tabpanel" hidden>
+        <div class="task-video-panel is-active" id="task-4" role="tabpanel">
           <div class="video-matrix" aria-label="Task 4 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
-            <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_04_grid.mp4</code></p></div></div>
+            <div class="matrix-video-frame">
+              <video id="task4-video" class="matrix-composite-video" autoplay muted loop playsinline preload="metadata" aria-label="Task 4 generated rollout and condition video grid">
+                <source src="videos/task4.mp4" type="video/mp4">
+              </video>
+            </div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
             <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Scene-to-Gripper</div>
             <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Robot-to-Scene</div>
+            <div class="matrix-video-controls video-controls" data-video-target="task4-video">
+              <input class="video-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="Task 4 video progress">
+              <div class="video-time" aria-hidden="true">
+                <span class="video-current-time">0:00</span>
+                <span class="video-time-divider">/</span>
+                <span class="video-duration">0:00</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="task-video-panel" id="task-5" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 5 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
             <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_05_grid.mp4</code></p></div></div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
@@ -187,23 +211,39 @@
         <div class="task-video-panel" id="task-6" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 6 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
-            <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_06_grid.mp4</code></p></div></div>
+            <div class="matrix-video-frame">
+              <video id="task6-video" class="matrix-composite-video" autoplay muted loop playsinline preload="metadata" aria-label="Task 6 generated rollout and condition video grid">
+                <source src="videos/task6.mp4" type="video/mp4">
+              </video>
+            </div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
             <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Scene-to-Gripper</div>
             <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Robot-to-Scene</div>
+            <div class="matrix-video-controls video-controls" data-video-target="task6-video">
+              <input class="video-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="Task 6 video progress">
+              <div class="video-time" aria-hidden="true">
+                <span class="video-current-time">0:00</span>
+                <span class="video-time-divider">/</span>
+                <span class="video-duration">0:00</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="task-video-panel" id="task-7" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 7 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
             <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_07_grid.mp4</code></p></div></div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
@@ -215,9 +255,11 @@
         <div class="task-video-panel" id="task-8" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 8 generated rollout and condition videos">
             <div class="matrix-corner"></div>
-            <div class="matrix-view-label">Head View</div>
-            <div class="matrix-view-label">Left Wrist View</div>
-            <div class="matrix-view-label">Right Wrist View</div>
+            <div class="matrix-view-header">
+              <div class="matrix-view-label">Head View</div>
+              <div class="matrix-view-label">Left Wrist View</div>
+              <div class="matrix-view-label">Right Wrist View</div>
+            </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
             <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_08_grid.mp4</code></p></div></div>
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
@@ -254,6 +296,114 @@
   </div>
 </footer>
 <script>
+  const formatVideoTime = (seconds) => {
+    if (!Number.isFinite(seconds) || seconds < 0) {
+      return '0:00';
+    }
+
+    const totalSeconds = Math.floor(seconds);
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainder = totalSeconds % 60;
+    return `${minutes}:${String(remainder).padStart(2, '0')}`;
+  };
+
+  const syncMatrixVideoLayout = (video) => {
+    const matrix = video.closest('.video-matrix');
+    const header = matrix ? matrix.querySelector('.matrix-view-header') : null;
+
+    if (!matrix || !header || !video.videoWidth || !video.videoHeight) {
+      return;
+    }
+
+    const videoWidth = header.getBoundingClientRect().width;
+
+    if (!videoWidth) {
+      return;
+    }
+
+    const videoHeight = videoWidth * (video.videoHeight / video.videoWidth);
+    matrix.style.setProperty('--matrix-row-height', `${videoHeight / 4}px`);
+  };
+
+  const matrixVideos = Array.from(document.querySelectorAll('.matrix-video-frame .matrix-composite-video'));
+
+  const syncAllMatrixVideos = () => {
+    matrixVideos.forEach((video) => syncMatrixVideoLayout(video));
+  };
+
+  document.querySelectorAll('.video-controls[data-video-target]').forEach((controls) => {
+    const video = document.getElementById(controls.dataset.videoTarget);
+    const scrubber = controls.querySelector('.video-scrubber');
+    const currentTime = controls.querySelector('.video-current-time');
+    const duration = controls.querySelector('.video-duration');
+
+    if (!video || !scrubber || !currentTime || !duration) {
+      return;
+    }
+
+    let isScrubbing = false;
+
+    const updateControls = () => {
+      const videoDuration = Number.isFinite(video.duration) ? video.duration : 0;
+      const progress = videoDuration > 0 ? (video.currentTime / videoDuration) * 1000 : 0;
+
+      if (!isScrubbing) {
+        scrubber.value = String(Math.max(0, Math.min(1000, progress)));
+      }
+
+      currentTime.textContent = formatVideoTime(video.currentTime);
+      duration.textContent = formatVideoTime(videoDuration);
+    };
+
+    const seekVideo = () => {
+      const videoDuration = Number.isFinite(video.duration) ? video.duration : 0;
+
+      if (videoDuration <= 0) {
+        return;
+      }
+
+      video.currentTime = (Number(scrubber.value) / 1000) * videoDuration;
+    };
+
+    video.addEventListener('loadedmetadata', updateControls);
+    video.addEventListener('timeupdate', updateControls);
+    video.addEventListener('durationchange', updateControls);
+
+    scrubber.addEventListener('pointerdown', () => {
+      isScrubbing = true;
+    });
+
+    scrubber.addEventListener('pointerup', () => {
+      isScrubbing = false;
+      seekVideo();
+      updateControls();
+    });
+
+    scrubber.addEventListener('input', () => {
+      seekVideo();
+      updateControls();
+    });
+
+    scrubber.addEventListener('change', () => {
+      seekVideo();
+      isScrubbing = false;
+      updateControls();
+    });
+
+    updateControls();
+  });
+
+  matrixVideos.forEach((video) => {
+    video.addEventListener('loadedmetadata', () => syncMatrixVideoLayout(video));
+    video.addEventListener('loadeddata', () => syncMatrixVideoLayout(video));
+
+    if (video.readyState >= 1) {
+      syncMatrixVideoLayout(video);
+    }
+  });
+
+  window.addEventListener('resize', syncAllMatrixVideos);
+
   document.querySelectorAll('[data-task-target]').forEach((button) => {
     button.addEventListener('click', () => {
       const targetId = button.dataset.taskTarget;
@@ -269,6 +419,8 @@
         panel.classList.toggle('is-active', isSelected);
         panel.hidden = !isSelected;
       });
+
+      requestAnimationFrame(syncAllMatrixVideos);
     });
   });
 </script>

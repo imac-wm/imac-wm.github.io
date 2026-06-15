@@ -261,7 +261,7 @@
               <div class="matrix-view-label">Right Wrist View</div>
             </div>
             <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
-             <div class="matrix-video-frame">
+            <div class="matrix-video-frame">
               <video id="task8-video" class="matrix-composite-video" autoplay muted loop playsinline preload="metadata" aria-label="Task 8 generated rollout and condition video grid">
                 <source src="videos/task8.mp4" type="video/mp4">
               </video>
@@ -269,9 +269,17 @@
             <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
             <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Scene-to-Gripper</div>
             <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Robot-to-Scene</div>
+            <div class="matrix-video-controls video-controls" data-video-target="task6-video">
+              <input class="video-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="Task 6 video progress">
+              <div class="video-time" aria-hidden="true">
+                <span class="video-current-time">0:00</span>
+                <span class="video-time-divider">/</span>
+                <span class="video-duration">0:00</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        
       <p class="content has-text-justified section-copy">
         Each task shows the generated RGB rollout together with its action-derived controls: URDF/FK motion images, scene-to-gripper contact images, and robot-to-scene contact images across the three camera views.
       </p>

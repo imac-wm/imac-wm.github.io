@@ -419,3 +419,30 @@ body {
     min-width: 760px;
   }
 }
+
+.injection-figure {
+  display: block;
+  width: min(100%, 520px);
+  height: auto;
+  margin: 0 auto;
+}
+
+.result-table-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.result-table {
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.result-table th,
+.result-table td {
+  text-align: center !important;
+  vertical-align: middle;
+}
+
+.result-table tr.is-selected-row td {
+  background-color: rgba(255, 127, 14, 0.08);
+}

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="iMaC: Translating Actions into Motion and Contact Images for Embodied World Models">
+  <meta name="description" content="PhysEval: Evaluating Robotic Manipulation Policies with Physical-Aware Action-Conditioned World Models">
   <meta name="keywords" content="Embodied World Models, Robot Learning, Video Prediction, Policy Evaluation, Robotic Manipulation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>iMaC</title>
+  <title>PhysEval</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -28,14 +28,13 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title imac-title">
-            iMaC: Translating Actions into Motion and Contact Images<br class="is-hidden-mobile">
-            for Embodied World Models
+            PhysEval: Evaluating Robotic Manipulation Policies<br class="is-hidden-mobile">
+            with Physical-Aware Action-Conditioned World Models
           </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">Anonymous Authors</span>
           </div>
-          <!-- <div class="is-size-6 publication-venue">CoRL 2026 Submission</div> -->
-          <div class="button-container">
+                    <div class="button-container">
             <a href="https://github.com/imac-wm/iMac" class="button imac-button" aria-label="Code" target="_blank" rel="noopener noreferrer">
               <span class="icon"><i class="fas fa-code"></i></span><span>Code</span>
             </a>
@@ -53,9 +52,9 @@
   <div class="container is-max-widescreen">
     <div class="hero-body">
       <div class="demo-video-frame">
-        <video id="teaser-video" class="demo-video" autoplay muted loop playsinline preload="metadata" aria-label="iMaC teaser video" src="videos/teaser.mp4"></video>
+        <video id="teaser-video" class="demo-video" autoplay muted loop playsinline preload="metadata" poster="img/demo_cover.jpg" aria-label="PhysEval demo video" src="videos/demo.mp4"></video>
         <div class="video-controls" data-video-target="teaser-video">
-          <input class="video-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="Teaser video progress">
+          <input class="video-scrubber" type="range" min="0" max="1000" value="0" step="1" aria-label="Demo video progress">
           <div class="video-time" aria-hidden="true">
             <span class="video-current-time">0:00</span>
             <span class="video-time-divider">/</span>
@@ -64,7 +63,7 @@
         </div>
       </div>
       <h2 class="subtitle has-text-centered teaser-caption">
-        iMaC translates future robot actions into <b>motion images</b> and <b>contact images</b>, enabling embodied world models to predict contact-sensitive future videos for closed-loop policy evaluation.
+        PhysEval evaluates manipulation policies in closed loop inside a world model. Its action condition, <b>iMaC</b>, transfers future actions into <b>images of Motion and Contact</b>, so that the predicted video follows the policy's actions at the scale where task outcomes are decided.
       </h2>
     </div>
   </div>
@@ -78,7 +77,7 @@
         <h2 class="title is-3 section-title">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Embodied world models promise to serve as real-world simulators for robot policy evaluation and closed-loop rollout, but their reliability depends on how precisely they condition future video prediction on robot actions. Existing action-conditioned video models often encode future actions as compact vectors, leaving the model to infer fine-grained spatial consequences indirectly. iMaC addresses this by translating future actions into dense image-like controls. It uses robot URDF and forward kinematics to render future robot observations as motion images, and uses RGB-D geometry to construct two-stream contact images that describe robot-scene spatial relations. These controls guide future-video prediction while preserving a scalable image-to-video modeling interface.
+            Developing a manipulation policy requires testing each checkpoint in diverse real-world scenes, where robot time and manual resets make evaluation its bottleneck. We propose to move this evaluation into a world model. Existing world models pursue visual fidelity, whereas evaluation needs physical fidelity, since the generated visual future must match the policy's actions exactly. We present PhysEval, a world-model evaluator with a physical-aware action condition named iMaC, which transfers future actions into <b>i</b>mages of <b>M</b>otion <b>a</b>nd <b>C</b>ontact. Motion images fix where the robot body appears, while contact images add its clearance from predicted depth. As naive injection can leave the contact heatmap in the judged frame, we propose representation-aware hybrid injection, which feeds motion images to the shallow latent and contact images to a deep context branch. Training-time rollout sustains the closed loop. On eight real-robot tasks, PhysEval's checkpoint scores correlate with hardware at 0.748&ndash;0.983. In an independent closed-loop study, its per-task outcome agreement with hardware averages 67.5%, against at most 57.9% for two baselines.
           </p>
         </div>
       </div>
@@ -90,10 +89,11 @@
   <div class="container is-max-widescreen">
     <hr>
     <div class="rows is-centered has-text-centered">
-      <h2 class="title is-3 section-title">Pipeline</h2>
-      <img class="pipeline-figure" src="img/teaser.png" alt="Overview of iMaC translating future robot actions into motion images and contact images for action-conditioned future-video prediction.">
+      <h2 class="title is-3 section-title">Closed-Loop Evaluation in a World Model</h2>
+      <img class="pipeline-figure" src="img/overview.png" alt="Closed-loop policy evaluation with PhysEval and a comparison of action-condition injection pathways.">
       <p class="content has-text-justified section-copy">
-        Given a reference RGB observation and a future action sequence, iMaC converts joint actions into future robot configurations through URDF and forward kinematics. Rendered robot observations provide motion-image controls. Auxiliary depth prediction and pointcloud geometry provide contact-image controls that describe current scene to future gripper distances and future robot to current scene distances. The controls are injected as video/image controls into the future-video world model.
+        <b>(a)</b> The policy proposes an action chunk, PhysEval predicts the resulting RGB observations, and the last predicted frame becomes the next policy input. Unlike hardware episodes, which run one at a time with manual resets, rollouts start from identical initial states and run in parallel.
+        <b>(b)</b> On Task 4 the hardware execution fails, but a world model without physical-aware action conditioning, given the same policy's actions, predicts chips on the plate without a pour and mistakes the failure for a success. The bottom row compares three ways of injecting the action: (i) cross-attention from video tokens to action embeddings, (ii) adding motion-image embeddings to the shallow latent, and (iii) PhysEval's hybrid injection of motion images into the shallow latent and contact images into a deep context branch.
       </p>
     </div>
   </div>
@@ -103,15 +103,39 @@
   <div class="container is-max-widescreen">
     <hr>
     <div class="rows is-centered has-text-centered">
-      <h2 class="title is-3 section-title">Generated Results and Conditions</h2>
+      <h2 class="title is-3 section-title">iMaC: Images of Motion and Contact</h2>
+      <img class="pipeline-figure" src="img/teaser.png" alt="Construction of motion images and contact images from the action chunk and the reference geometry.">
+      <p class="content has-text-justified section-copy">
+        A compact action token asks the video model to infer where every robot link will appear. PhysEval instead computes these locations from the URDF and forward kinematics, and renders the action chunk as <b>motion images</b> before generation. Contact is decided at a smaller scale than the arm, so PhysEval also reconstructs the scene from the reference RGB and predicted depth and projects two <b>contact images</b>: a robot-to-scene field that says what the robot is about to reach, and a scene-to-gripper field that says which part of the scene is about to be acted on. After each chunk, the last predicted frame and its depth replace the reference, so the controls stay consistent over long closed-loop rollouts.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Representation-Aware Hybrid Injection</h2>
+      <img class="injection-figure" src="img/injection.png" alt="Representation-aware hybrid injection: motion images enter the shallow latent, contact images enter a deep context branch with zero-initialized projections.">
+      <p class="content has-text-justified section-copy">
+        Motion images carry the appearance of the target frame, so they are added to the shallow video latent. Contact images encode proximity through artificial colors that must not appear in the judged frame, so they are interpreted by a 15-block context branch and reach the DiT through zero-initialized residual projections. Stage 2 trains only the contact path while the DiT trunk stays frozen.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Generated Rollouts and Controls</h2>
       <div class="task-switcher" role="tablist" aria-label="Task videos">
         <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-1" data-task-target="task-1">Task 1</button>
         <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-2" data-task-target="task-2">Task 2</button>
         <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-3" data-task-target="task-3">Task 3</button>
         <button class="task-button is-active" type="button" role="tab" aria-selected="true" aria-controls="task-4" data-task-target="task-4">Task 4</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-5" data-task-target="task-5" disabled aria-disabled="true">Task 5</button>
         <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-6" data-task-target="task-6">Task 6</button>
-        <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-7" data-task-target="task-7" disabled aria-disabled="true">Task 7</button>
         <button class="task-button" type="button" role="tab" aria-selected="false" aria-controls="task-8" data-task-target="task-8">Task 8</button>
       </div>
 
@@ -228,22 +252,6 @@
           </div>
         </div>
 
-        <div class="task-video-panel" id="task-5" role="tabpanel" hidden>
-          <div class="video-matrix" aria-label="Task 5 generated rollout and condition videos">
-            <div class="matrix-corner"></div>
-            <div class="matrix-view-header">
-              <div class="matrix-view-label">Head View</div>
-              <div class="matrix-view-label">Left Wrist View</div>
-              <div class="matrix-view-label">Right Wrist View</div>
-            </div>
-            <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
-            <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_05_grid.mp4</code></p></div></div>
-            <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
-            <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Scene-to-Gripper</div>
-            <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Robot-to-Scene</div>
-          </div>
-        </div>
-
         <div class="task-video-panel" id="task-6" role="tabpanel" hidden>
           <div class="video-matrix" aria-label="Task 6 generated rollout and condition videos">
             <div class="matrix-corner"></div>
@@ -269,22 +277,6 @@
                 <span class="video-duration">0:00</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="task-video-panel" id="task-7" role="tabpanel" hidden>
-          <div class="video-matrix" aria-label="Task 7 generated rollout and condition videos">
-            <div class="matrix-corner"></div>
-            <div class="matrix-view-header">
-              <div class="matrix-view-label">Head View</div>
-              <div class="matrix-view-label">Left Wrist View</div>
-              <div class="matrix-view-label">Right Wrist View</div>
-            </div>
-            <div class="matrix-row-label generated-row-label">Generated Results:<br>RGB Video</div>
-            <div class="video-placeholder matrix-composite-video"><div><p class="placeholder-kicker">Generated Results and Conditions</p><p class="placeholder-title"><code>videos/task_07_grid.mp4</code></p></div></div>
-            <div class="matrix-row-label">Condition Video:<br>Motion Image</div>
-            <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Scene-to-Gripper</div>
-            <div class="matrix-row-label">Condition Video:<br>Contact Image:<br>Robot-to-Scene</div>
           </div>
         </div>
 
@@ -315,9 +307,10 @@
             </div>
           </div>
         </div>
-        
+      </div>
+
       <p class="content has-text-justified section-copy">
-        Each task shows the generated RGB rollout together with its action-derived controls: URDF/FK motion images, scene-to-gripper contact images, and robot-to-scene contact images across the three camera views.
+        Each task shows a PhysEval rollout together with its action-derived controls across the head and two wrist views: the generated RGB video, the URDF/FK motion images, and the scene-to-gripper and robot-to-scene contact images.
       </p>
     </div>
   </div>
@@ -327,10 +320,34 @@
   <div class="container is-max-widescreen">
     <hr>
     <div class="rows is-centered has-text-centered">
-      <h2 class="title is-3 section-title">Policy Evaluation</h2>
-      <img class="eval-figure" src="img/world_model_real_correlation_vace.png" alt="Correlation between normalized real-world success rate and normalized iMaC world-model success rate across eight tasks.">
+      <h2 class="title is-3 section-title">Do World-Model Scores Rank Checkpoints?</h2>
+      <img class="eval-figure" src="img/world_model_real_correlation_physeval.png" alt="Correlation between normalized real-world success rate and normalized PhysEval success rate across eight tasks.">
       <p class="content has-text-justified section-copy">
-        iMaC is designed for evaluating robot policies through closed-loop rollout in a learned real-world simulator. The correlation measures whether world-model scores preserve policy performance across different model families and across checkpoints from the same model, supporting both model comparison and iterative checkpoint selection.
+        Each task compares early, middle, and late checkpoints of &pi;<sub>0.5</sub> and GigaBrain-0.5 on matched initial configurations, with one point per 15-episode evaluation group. PhysEval scores correlate with hardware success at Pearson <i>r</i> = 0.748&ndash;0.983. The tie-aware pairwise ranking accuracy ranges from 75.0% to 100% and pools to 89.9%. In seven of the eight tasks, the checkpoint that PhysEval scores highest is also the best on hardware. These results support relative checkpoint screening; hardware trials remain the final validation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section imac-section">
+  <div class="container is-max-widescreen">
+    <hr>
+    <div class="rows is-centered has-text-centered">
+      <h2 class="title is-3 section-title">Closed-Loop Outcome Agreement</h2>
+      <div class="table-container result-table-wrap">
+        <table class="table is-striped is-narrow result-table">
+          <thead>
+            <tr><th>Evaluator</th><th>Action condition</th><th>Score (0&ndash;100)</th><th>Agree (%)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ctrl-World</td><td>Action embeddings (cross-attention)</td><td>54.35 [52.23, 56.49]</td><td>57.9 [52.3, 63.4]</td></tr>
+            <tr><td>ABot-PhysWorld</td><td>Action maps (deep)</td><td>55.94 [53.28, 58.56]</td><td>56.4 [50.5, 62.0]</td></tr>
+            <tr class="is-selected-row"><td><b>PhysEval</b></td><td>Motion (shallow) + contact (deep)</td><td><b>57.11</b> [54.94, 59.27]</td><td><b>67.5</b> [61.8, 73.0]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="content has-text-justified section-copy">
+        Under an independently administered closed-loop protocol, the same policy is rolled out from the same initial states in each world model, and 702 generated episodes over the eight tasks are judged against the hardware execution. Score is the mean rating on a 0&ndash;100 scale; Agree is the percentage of episodes whose predicted success or failure matches hardware. Values are macro-averaged over tasks with 95% bootstrap intervals. The three evaluators share the training data and a Wan-based 5B backbone, so they differ mainly in how the action enters the model. PhysEval never falls below 46.7% agreement on any task, whereas Ctrl-World agrees on 20.7% of Task 4 and ABot-PhysWorld on 20.0% of Task 2.
       </p>
     </div>
   </div>
@@ -339,7 +356,7 @@
 <footer class="footer imac-footer">
   <div class="container">
     <div class="content has-text-centered">
-      <p>Project page scaffold for iMaC. Replace placeholder links, images, and videos as final assets become available.</p>
+      <p>Anonymous project page for double-anonymous review.</p>
     </div>
   </div>
 </footer>
